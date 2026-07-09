@@ -1,0 +1,38 @@
+{
+  "$comment": "SEED, not a full ingestion. The adapter's public contract models the subset of Halo resources that have (or plausibly will have) a Gorelo counterpart. A complete Halo surface must be reconciled from TWO sources with live access: (1) the per-tenant OpenAPI at https://<tenant>.halopsa.com/apidoc, and (2) the homotechsual/HaloAPI 'Public/' cmdlets (which include undocumented endpoints Halo's swagger omits). Endpoints present in the module but absent from swagger must be flagged 'undocumented' when ingested. This file lists only what the adapter currently contracts to.",
+  "auth": {
+    "scheme": "oauth2",
+    "grant": "client_credentials",
+    "authUrlPattern": "https://<tenant>.halopsa.com/auth/token",
+    "resourceUrlPattern": "https://<tenant>.halopsa.com/api",
+    "appType": "Client ID and Secret (Services)",
+    "scope": "all"
+  },
+  "ingestionStatus": "seed",
+  "reconciledSources": [],
+  "pendingSources": [
+    "https://<tenant>.halopsa.com/apidoc",
+    "homotechsual/HaloAPI Public/*.ps1"
+  ],
+  "resources": [
+    { "resource": "tickets", "endpoint": "/Tickets", "operations": ["list", "get", "create", "update", "delete"], "listEnvelopeKey": "tickets", "idType": "int" },
+    { "resource": "actions", "endpoint": "/Actions", "operations": ["list", "create"], "listEnvelopeKey": "actions", "idType": "int" },
+    { "resource": "clients", "endpoint": "/Client", "operations": ["list", "get", "create", "update", "delete"], "listEnvelopeKey": "clients", "idType": "int" },
+    { "resource": "sites", "endpoint": "/Site", "operations": ["list", "get", "create", "update", "delete"], "listEnvelopeKey": "sites", "idType": "int" },
+    { "resource": "users", "endpoint": "/Users", "operations": ["list", "get", "create", "update", "delete"], "listEnvelopeKey": "users", "idType": "int", "note": "Halo 'Users' are client-side contacts; 'Agents' are staff." },
+    { "resource": "assets", "endpoint": "/Asset", "operations": ["list", "get", "create", "update", "delete"], "listEnvelopeKey": "assets", "idType": "int" },
+    { "resource": "ticketStatuses", "endpoint": "/Status", "operations": ["list"], "listEnvelopeKey": "statuses", "idType": "int" },
+    { "resource": "ticketTypes", "endpoint": "/TicketType", "operations": ["list"], "listEnvelopeKey": "types", "idType": "int" },
+    { "resource": "ticketTags", "endpoint": "/TicketTag", "operations": ["list"], "listEnvelopeKey": "tags", "idType": "int" },
+    { "resource": "teams", "endpoint": "/Team", "operations": ["list"], "listEnvelopeKey": "teams", "idType": "int" },
+    { "resource": "agents", "endpoint": "/Agent", "operations": ["list"], "listEnvelopeKey": "agents", "idType": "int" },
+    { "resource": "invoices", "endpoint": "/Invoice", "operations": ["list", "get"], "listEnvelopeKey": "invoices", "idType": "int" },
+    { "resource": "contracts", "endpoint": "/ClientContract", "operations": ["list"], "listEnvelopeKey": "contracts", "idType": "int" }
+  ],
+  "notModeledYet": [
+    "Items & Stock", "Suppliers", "Supplier Contracts", "Quotations", "Purchase Orders",
+    "Projects", "Appointments/Calendars", "Knowledge Base", "SLAs", "Roles",
+    "Time/Timesheets", "Reporting", "Webhooks/Notifications", "Custom Objects"
+  ],
+  "pagination": { "requestParams": ["page_no", "page_size"], "responseEnvelope": { "record_count": "int", "<resource>": "T[]" } }
+}
