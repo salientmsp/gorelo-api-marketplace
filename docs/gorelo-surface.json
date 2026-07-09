@@ -1,0 +1,152 @@
+{
+  "source": "spec/gorelo-public-api.v1.json",
+  "title": "Public API",
+  "version": "1.0.0",
+  "openapi": "3.0.1",
+  "auth": {
+    "scheme": "apiKey",
+    "name": "X-API-Key",
+    "in": "header"
+  },
+  "baseUrlPattern": "https://api.<region>.gorelo.io",
+  "operationCount": 18,
+  "operations": [
+    {
+      "method": "POST",
+      "path": "/v1/alerts/",
+      "params": [],
+      "hasResponseSchema": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/assets/agents",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/assets/agents/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path"
+        }
+      ],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/clients",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "POST",
+      "path": "/v1/clients",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/clients",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/clients/{clientId}/locations",
+      "params": [
+        {
+          "name": "clientId",
+          "in": "path"
+        }
+      ],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/clients/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path"
+        }
+      ],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/contacts",
+      "params": [
+        {
+          "name": "ContactIds",
+          "in": "query"
+        },
+        {
+          "name": "clientid",
+          "in": "query"
+        }
+      ],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "POST",
+      "path": "/v1/contacts",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "PATCH",
+      "path": "/v1/contacts",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/contacts/{id}",
+      "params": [
+        {
+          "name": "id",
+          "in": "path"
+        }
+      ],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organization/groups",
+      "params": [],
+      "hasResponseSchema": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/organization/users",
+      "params": [],
+      "hasResponseSchema": false
+    },
+    {
+      "method": "POST",
+      "path": "/v1/tickets",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/tickets/statuses",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/tickets/tags",
+      "params": [],
+      "hasResponseSchema": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/tickets/types",
+      "params": [],
+      "hasResponseSchema": true
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "name": "@salient/halo-gorelo-adapter",
+  "version": "0.1.0",
+  "description": "A Halo PSA-shaped API surface that translates calls to the Gorelo API behind a swappable provider, governed by a typed capability manifest.",
+  "license": "UNLICENSED",
+  "private": true,
+  "type": "module",
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "FEATURE-MATRIX.md",
+    "feature-matrix.json"
+  ],
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./manifest": {
+      "types": "./dist/manifest/index.d.ts",
+      "import": "./dist/manifest/index.js",
+      "require": "./dist/manifest/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "scripts": {
+    "build": "tsup",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "matrix": "tsx scripts/generate-matrix.ts",
+    "matrix:check": "tsx scripts/generate-matrix.ts --check",
+    "lint": "tsc --noEmit",
+    "ci": "npm run typecheck && npm run test && npm run matrix:check",
+    "release": "npm run build && changeset publish"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@changesets/cli": "^2.27.9",
+    "tsup": "^8.3.0",
+    "tsx": "^4.19.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}
